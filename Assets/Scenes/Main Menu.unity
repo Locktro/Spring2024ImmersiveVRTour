@@ -7656,10 +7656,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7421812681933396762, guid: 0ed42f5d6ca022a43bd2cfea652395b3, type: 3}
       propertyPath: m_text
-      value: "To explore a room, point your finger toward the yellow highlighted
-        area.\n\nIf you can't reach or the teleport doesn't activate, walk closer
-        to the yellow area until you\u2019re within range. Point again to teleport
-        successfully."
+      value: "This experience is still in constant development by students for credit
+        at Georgia Tech and is primarily designed to teach the basics of XR development
+        and to create something they can be proud to put on their portfolio. If there
+        are any bugs or unfinished aspects, please have patience and feel free to
+        leave feedback in the form of a review!\n\nTo explore a room, point your
+        finger toward the yellow highlighted area.\n\nIf you can't reach or the teleport
+        doesn't activate, walk closer to the yellow area until you\u2019re within
+        range. Point again to teleport successfully."
       objectReference: {fileID: 0}
     - target: {fileID: 7771040040116474481, guid: 0ed42f5d6ca022a43bd2cfea652395b3, type: 3}
       propertyPath: m_Name
