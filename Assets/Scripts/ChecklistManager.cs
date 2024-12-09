@@ -1,49 +1,35 @@
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
-using TMPro; // Add this to use TextMeshPro
 
 public class ChecklistManager : MonoBehaviour
 {
-    public static ChecklistManager Instance { get; private set; }  // Singleton instance
-
-    [SerializeField] private GameObject checklistItemTemplate;  // Template for checklist items (Toggle UI)
+    [SerializeField] private GameObject checklistCanvas;        // The Canvas holding the checklist
     [SerializeField] private Transform checklistContainer;      // ScrollView Content to hold checklist items
     [SerializeField] private TextMeshProUGUI scoreText;         // TextMeshPro for the total score
     [SerializeField] private ScrollRect scrollView;             // Reference to the ScrollView component
+    [SerializeField] private GameObject checklistItemPrefab;    // Prefab for checklist items
 
-    private List<string> checklistItems = new List<string>();   // List of all collectible items
+    private List<string> checklistItems = new List<string>      // Static list of checklist items
+    {
+        "Football",
+        "Buzz Prison",
+        "Ramen Bowl",
+        "Band Hat",
+    };
+
     private Dictionary<string, Toggle> checklistToggles = new Dictionary<string, Toggle>();  // Dictionary to map item names to their Toggles
     private int totalScore = 0;                                 // Total score or items found count
 
-    private void Awake()
-    {
-        // Singleton pattern: Ensure only one instance exists
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);  // Make this object persist across scenes
-        }
-        else
-        {
-            Destroy(gameObject);  // Destroy any duplicate instances
-        }
-
-        // Validate required references
-        if (checklistItemTemplate == null) Debug.LogWarning("Checklist Item Template is not assigned!");
-        if (checklistContainer == null) Debug.LogWarning("Checklist Container is not assigned!");
-        if (scoreText == null) Debug.LogWarning("Score Text is not assigned!");
-        if (scrollView == null) Debug.LogWarning("Scroll View is not assigned!");
-    }
-
     private void Start()
     {
-        PopulateChecklist();
+        PopulateChecklist();   // Populate using static checklistItems
         UpdateScoreDisplay();  // Initialize score display
         InitializeScrollView(); // Ensure the ScrollView starts at the top
     }
 
-    // Adds all collectibles to the checklist at the start
+    // Populates the checklist from the static checklistItems list
     private void PopulateChecklist()
     {
         // Clear existing checklist items
@@ -52,23 +38,29 @@ public class ChecklistManager : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        // Temporary test data for checklist
-        string[] testItems = { "Ramen Bowl", "Buzz Prison", "Football", "Band Hat", "Rat Cap" };
-        foreach (string itemName in testItems)
+        // Populate checklist items dynamically
+        foreach (string itemName in checklistItems)
         {
-            checklistItems.Add(itemName);
+            // Instantiate the prefab for each checklist item
+            GameObject newItem = Instantiate(checklistItemPrefab, checklistContainer);
 
-            GameObject newItem = Instantiate(checklistItemTemplate, checklistContainer);
-            newItem.SetActive(true);
-
+            // Set the label text to the item name
             TextMeshProUGUI label = newItem.GetComponentInChildren<TextMeshProUGUI>();
             if (label != null)
             {
                 label.text = itemName;
             }
 
+            // Get the Toggle component and store it in the dictionary for later reference
             Toggle toggle = newItem.GetComponent<Toggle>();
-            checklistToggles[itemName] = toggle;
+            if (toggle != null)
+            {
+                toggle.isOn = false; // Ensure all toggles start unchecked
+                checklistToggles[itemName] = toggle;
+
+                // Optional: Add a listener to handle toggle changes (if needed later)
+                toggle.onValueChanged.AddListener((isChecked) => OnToggleValueChanged(itemName, isChecked));
+            }
         }
 
         UpdateContentSize();
@@ -79,10 +71,27 @@ public class ChecklistManager : MonoBehaviour
     {
         if (checklistContainer.TryGetComponent<RectTransform>(out RectTransform rectTransform))
         {
-            float itemHeight = checklistItemTemplate.GetComponent<RectTransform>().rect.height;
-            float spacing = checklistContainer.GetComponent<VerticalLayoutGroup>().spacing;
-            float totalHeight = (itemHeight + spacing) * checklistItems.Count;
+            float totalHeight = 0f;
 
+            // Calculate total height based on the children in the Vertical Layout Group
+            foreach (Transform child in checklistContainer)
+            {
+                RectTransform childRect = child.GetComponent<RectTransform>();
+                if (childRect != null)
+                {
+                    totalHeight += childRect.rect.height;
+                }
+            }
+
+            // Add spacing from the Vertical Layout Group
+            VerticalLayoutGroup layoutGroup = checklistContainer.GetComponent<VerticalLayoutGroup>();
+            if (layoutGroup != null)
+            {
+                totalHeight += layoutGroup.spacing * (checklistItems.Count - 1);
+                totalHeight += layoutGroup.padding.top + layoutGroup.padding.bottom;
+            }
+
+            // Set the container height
             rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, totalHeight);
         }
     }
@@ -96,23 +105,6 @@ public class ChecklistManager : MonoBehaviour
         }
     }
 
-    // Method to mark an item as found
-    public void MarkItemAsFound(string itemName)
-    {
-        if (checklistToggles.ContainsKey(itemName) && !checklistToggles[itemName].isOn)
-        {
-            checklistToggles[itemName].isOn = true;  // Check off the item
-            IncrementScore();
-        }
-    }
-
-    // Increments the score and updates the display
-    private void IncrementScore()
-    {
-        totalScore++;
-        UpdateScoreDisplay();
-    }
-
     // Updates the score text display
     private void UpdateScoreDisplay()
     {
@@ -122,10 +114,38 @@ public class ChecklistManager : MonoBehaviour
         }
     }
 
-    // Method to refresh the checklist (e.g., for dynamic updates)
-    public void RefreshChecklist()
+    // Handles toggle value changes (optional functionality for future use)
+    private void OnToggleValueChanged(string itemName, bool isChecked)
     {
-        PopulateChecklist();
+        if (isChecked)
+        {
+            totalScore++;
+        }
+        else
+        {
+            totalScore--;
+        }
         UpdateScoreDisplay();
+    }
+
+    // Mark an item as found when selected
+    public void MarkItemOnSelect(GameObject selectedObject)
+    {
+        string itemName = selectedObject.name; // Use the object's name to find the checklist item
+        
+        if (checklistToggles.TryGetValue(itemName, out Toggle toggle))
+        {
+            if (!toggle.isOn) // Only mark if it's not already checked
+            {
+                toggle.isOn = true;  // Mark the toggle as checked
+                totalScore++;       // Increment the score
+                UpdateScoreDisplay(); // Update the UI score
+                Debug.Log($"Item '{itemName}' has been marked as found.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"Item '{itemName}' not found in the checklist.");
+        }
     }
 }
