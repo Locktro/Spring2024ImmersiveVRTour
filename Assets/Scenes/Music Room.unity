@@ -2035,8 +2035,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7421812681933396762, guid: 0ed42f5d6ca022a43bd2cfea652395b3, type: 3}
       propertyPath: m_text
-      value: Explore the room by picking up artifacts on the table. To pick up an
-        artifact, simply reach out and perform a grabbing motion with your hand.
+      value: Explore the room by picking up artifacts around you. To pick up an artifact,
+        simply reach out and perform a grabbing motion with your hand.
       objectReference: {fileID: 0}
     - target: {fileID: 7421812681933396762, guid: 0ed42f5d6ca022a43bd2cfea652395b3, type: 3}
       propertyPath: m_fontStyle
