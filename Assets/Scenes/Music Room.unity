@@ -2035,8 +2035,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7421812681933396762, guid: 0ed42f5d6ca022a43bd2cfea652395b3, type: 3}
       propertyPath: m_text
-      value: Explore the room by picking up artifacts around you. To pick up an artifact,
-        simply reach out and perform a grabbing motion with your hand.
+      value: Explore the room by picking up highlighted artifacts around you. To
+        pick up an artifact, simply reach out and perform a grabbing motion with
+        your hand.
       objectReference: {fileID: 0}
     - target: {fileID: 7421812681933396762, guid: 0ed42f5d6ca022a43bd2cfea652395b3, type: 3}
       propertyPath: m_fontStyle
@@ -7381,7 +7382,7 @@ GameObject:
   - component: {fileID: 575748692}
   - component: {fileID: 575748693}
   m_Layer: 0
-  m_Name: RightHandGrabDrumStick2
+  m_Name: LeftHandGrabDrumStick2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11512,9 +11513,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a94ca076b4c9dc2428099fd2989deea2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2099102194}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a94ca076b4c9dc2428099fd2989deea2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2099102196}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a94ca076b4c9dc2428099fd2989deea2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2099102193}
@@ -18794,7 +18792,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _surface: {fileID: 0}
-  _relativeTo: {fileID: 0}
+  _relativeTo: {fileID: 2099102188}
   _usesHandPose: 1
   _handPose:
     _handedness: 1
@@ -19345,9 +19343,9 @@ MonoBehaviour:
   _maxInteractors: -1
   _maxSelectingInteractors: -1
   _data: {fileID: 0}
-  _pointableElement: {fileID: 0}
-  _rigidbody: {fileID: 0}
-  _physicsGrabbable: {fileID: 0}
+  _pointableElement: {fileID: 2099102190}
+  _rigidbody: {fileID: 2099102194}
+  _physicsGrabbable: {fileID: 2099102193}
   _resetGrabOnGrabsUpdated: 1
   _scoringModifier:
     _positionRotationWeight: 0.8
@@ -21762,7 +21760,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _surface: {fileID: 0}
-  _relativeTo: {fileID: 0}
+  _relativeTo: {fileID: 2099102188}
   _usesHandPose: 1
   _handPose:
     _handedness: 0
@@ -25185,42 +25183,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2099102195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 976765833}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2f8f6e9e6f3e114b9bf9a57c2160615, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pointable: {fileID: 0}
-  _whenRelease:
-    m_PersistentCalls:
-      m_Calls: []
-  _whenHover:
-    m_PersistentCalls:
-      m_Calls: []
-  _whenUnhover:
-    m_PersistentCalls:
-      m_Calls: []
-  _whenSelect:
-    m_PersistentCalls:
-      m_Calls: []
-  _whenUnselect:
-    m_PersistentCalls:
-      m_Calls: []
-  _whenMove:
-    m_PersistentCalls:
-      m_Calls: []
-  _whenCancel:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!65 &2099102196
-BoxCollider:
+--- !u!64 &2099102195
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -25237,9 +25201,10 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.043353718, y: 0.015637526, z: 0.00797773}
-  m_Center: {x: -0.00594326, y: -0.0016009205, z: 0.0054692365}
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5461320835613783329, guid: a94ca076b4c9dc2428099fd2989deea2, type: 3}
 --- !u!1 &2104028107
 GameObject:
   m_ObjectHideFlags: 0
@@ -25704,7 +25669,7 @@ GameObject:
   - component: {fileID: 2131197646}
   - component: {fileID: 2131197647}
   m_Layer: 0
-  m_Name: LeftDrum2Stick_mirror
+  m_Name: RightDrum2Stick_mirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25742,7 +25707,7 @@ MonoBehaviour:
   _maxInteractors: -1
   _maxSelectingInteractors: -1
   _data: {fileID: 0}
-  _pointableElement: {fileID: 0}
+  _pointableElement: {fileID: 638470565}
   _rigidbody: {fileID: 638470559}
   _physicsGrabbable: {fileID: 638470558}
   _resetGrabOnGrabsUpdated: 1
