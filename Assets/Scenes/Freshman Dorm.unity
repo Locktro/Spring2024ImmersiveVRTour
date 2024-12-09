@@ -24071,6 +24071,10 @@ PrefabInstance:
       propertyPath: _yThresholdForRespawn
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 1298179894788504121, guid: 7c90e78caf2005d46bc6f202164db9d2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -876546973899608171, guid: 5bd105a1f7ea13e408db57a72506d539, type: 3}
     - target: {fileID: 1456658492478536300, guid: 7c90e78caf2005d46bc6f202164db9d2, type: 3}
       propertyPath: _handGrabPoses.Array.size
       value: 1
@@ -24355,6 +24359,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3531450378338560092, guid: 7c90e78caf2005d46bc6f202164db9d2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -876546973899608171, guid: ff98e7710aeaf8c4b8bb0e3f3efdc3fe, type: 3}
     - target: {fileID: 3623274209814111897, guid: 7c90e78caf2005d46bc6f202164db9d2, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -24419,6 +24427,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5330274508815719723, guid: 7c90e78caf2005d46bc6f202164db9d2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -876546973899608171, guid: dad35be7fadc61b469c87e6b28762400, type: 3}
     - target: {fileID: 5702663468059724922, guid: 7c90e78caf2005d46bc6f202164db9d2, type: 3}
       propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -24543,6 +24555,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Ramen Beef Bowl
       objectReference: {fileID: 0}
+    - target: {fileID: 5978166563687570943, guid: 7c90e78caf2005d46bc6f202164db9d2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -876546973899608171, guid: a5ef3b42710940241843e5e7931b9c82, type: 3}
     - target: {fileID: 6050029129423925383, guid: 7c90e78caf2005d46bc6f202164db9d2, type: 3}
       propertyPath: _handGrabPoses.Array.size
       value: 1
@@ -24751,6 +24767,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8592552710953395227, guid: 7c90e78caf2005d46bc6f202164db9d2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -876546973899608171, guid: 18585f11835f74f4287257e7cf9cc5c8, type: 3}
     - target: {fileID: 8721580265370363870, guid: 7c90e78caf2005d46bc6f202164db9d2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
